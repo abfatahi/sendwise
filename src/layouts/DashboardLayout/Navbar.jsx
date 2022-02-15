@@ -17,7 +17,7 @@ const Navbar = (props) => {
       <div className='group'>
         <Logout onClick={signout} />
         <h4>
-          internet<span>Banking ...</span>{' '}
+          SEND<span>WISE ...</span>{' '}
         </h4>
       </div>
       <NavMenu>
@@ -43,7 +43,7 @@ const Container = styled.div`
   height: 60px;
   width: 100vw;
   background: #ffffff;
-  border-bottom: 1px solid #e24307;
+  border-bottom: 1px solid #5a75ff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -65,7 +65,7 @@ const Container = styled.div`
     font-size: 18px;
     text-align: center;
     letter-spacing: 0.05em;
-    color: #e24307;
+    color: #5a75ff;
 
     @media screen and (max-width: 425px) {
       font-size: 14px;
@@ -97,7 +97,7 @@ const NavMenu = styled.div`
 const Toggle = styled(FaBars)`
   width: 1.2rem;
   height: 1.2rem;
-  color: #e24307;
+  color: #5a75ff;
 
   :hover {
     transition: 0s all ease-in-out linear;
@@ -134,7 +134,7 @@ const UserProfile = styled.div`
     font-size: 0.9rem;
     text-align: center;
     letter-spacing: 0.015em;
-    color: #e24307;
+    color: #5a75ff;
     margin: 0 !important;
     padding: 0 !important;
   }
@@ -144,7 +144,7 @@ const NotificationIcon = styled(FaBell)`
   margin-right: 2.5rem;
   width: 1.2rem;
   height: 1.2rem;
-  color: #e24307;
+  color: #5a75ff;
   cursor: pointer;
 
   :hover {
@@ -157,7 +157,7 @@ const Avatar = styled(FaUser)`
   margin-right: 0.5rem;
   width: 2rem;
   height: 2rem;
-  color: #e24307;
+  color: #5a75ff;
   border-radius: 50%;
   padding: 1px;
 `;
@@ -166,7 +166,7 @@ const Logout = styled(FaChevronCircleLeft)`
   cursor: pointer;
   width: 1.5rem;
   height: 1.5rem;
-  color: #e24307;
+  color: #5a75ff;
 
   @media screen and (max-width: 425px) {
     width: 1.2rem;

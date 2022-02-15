@@ -17,7 +17,7 @@ const Index = () => {
         <AccountTab
           text='Account Statement'
           icon={<FaWallet className='icon' />}
-          link='/account/statement'
+          // link='/account/statement'
         />
       </CardWrapper>
     </Container>

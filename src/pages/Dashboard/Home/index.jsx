@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Table } from 'antd';
 import { DashboardLayout } from '../../../layouts';
 import Container from './styles';
-import { AccountSummaryCard } from '../../../components/Dashboard';
+import { AccountSummaryCard, BalanceCard } from '../../../components/Dashboard';
 import { columns } from '../../../utils/tables';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -10,6 +10,8 @@ import {
   accountSelector,
 } from '../../../redux/reducers/account';
 import { transferSelector } from '../../../redux/reducers/transfers';
+import { AccountTab } from '../../../components/Account';
+import { FaExchangeAlt, FaHistory } from 'react-icons/fa';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -20,19 +22,32 @@ const Index = () => {
       content={
         <Container>
           <h1>Dashboard</h1>
-          <p>Quickly perform task from the dashboard or view reprots</p>
+          <p>
+            Quickly perform task such as transfers funds and view all
+            transactions from the dashboard
+          </p>
           <div className='header'>
             <h3>ACCOUNT SUMMARY</h3>
             <div className='balance__group'>
               <b>SHOW BALANCE</b>
               <Switch
-                style={{ background: '#e24307' }}
+                style={{ background: '#5a75ff' }}
                 onChange={() => dispatch(toggleShowBalance())}
               />
               {showBalance ? <b>ON</b> : <b>OFF</b>}
             </div>
           </div>
-          <AccountSummaryCard />
+          <div className='card_group'>
+            <AccountSummaryCard />
+            <div className='assets'>
+              <h3>Account Balance Breakdown</h3>
+              <div className='group'>
+                <BalanceCard symbol='$' currency='USD' balance='1,000' />
+                <BalanceCard symbol='€' currency='EUR' balance='1,000' />
+                <BalanceCard symbol='₦' currency='NGN' balance='1,000' />
+              </div>
+            </div>
+          </div>
           <br />
           <br />
           <h3>Recent Transactions</h3>

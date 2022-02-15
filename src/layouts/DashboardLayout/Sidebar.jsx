@@ -127,7 +127,7 @@ const Container = styled.div`
   }
 
   .active {
-    background: #e24307 !important;
+    background: #5a75ff !important;
     border-left: 5px solid #fff !important;
 
     p,
@@ -162,7 +162,7 @@ const Container = styled.div`
 
       h2 {
         font-size: 1rem;
-        color: #e24307;
+        color: #5a75ff;
       }
 
       h3 {
@@ -176,7 +176,7 @@ const Container = styled.div`
 const Close = styled(FaTimes)`
   width: 1.2rem;
   height: 1.2rem;
-  color: #e24307;
+  color: #5a75ff;
   position: absolute;
   top: 1rem;
   right: 1rem;

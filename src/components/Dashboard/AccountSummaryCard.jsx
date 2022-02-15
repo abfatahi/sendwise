@@ -1,8 +1,10 @@
 import React from 'react';
-import { FaCheckCircle } from 'react-icons/fa';
+import { FaCheckCircle, FaExchangeAlt, FaHistory } from 'react-icons/fa';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { accountSelector } from '../../redux/reducers/account';
+// import { Selectfield } from '../../reusables';
+// import { Radio } from 'antd';
 
 const Index = () => {
   const loggedInUser = JSON.parse(localStorage.getItem('user'));
@@ -11,18 +13,33 @@ const Index = () => {
     <Container>
       {loggedInUser && (
         <>
+          {/* <div className='default_currency'>
+            <Selectfield
+            full
+              placeholder='USD'
+              data={[
+                { name: 'USD', value: 'USD' },
+                { name: 'EUR', value: 'EUR' },
+                { name: 'NGN', value: 'NGN' },
+              ]}
+            />
+          </div> */}
           <div className='first__row'>
-            <div className='balance__group'>
-              <div className='available__balance'>
-                # {showBalance ? '450,000' : 'XXXXXX'}
+            <div className='total__balance'>
+              <span>USD</span>&nbsp;
+              {showBalance ? '2450' : 'XXXXXX'}
+            </div>
+            <div className='btn__group'>
+              <div className='btn_tab'>
+                <FaExchangeAlt />
+                Transfer
               </div>
-              <p>Book Balance: #{showBalance ? '500,000' : 'XXXXXX'}</p>
+              <div className='btn_tab'>
+                <FaHistory />
+                Transactions
+              </div>
             </div>
             <FaCheckCircle className='icon' />
-          </div>
-          <div className='second_row'>
-            <h3>{loggedInUser.fullname}</h3>
-            <h4>0089728686</h4>
           </div>
         </>
       )}
@@ -51,51 +68,86 @@ const Container = styled.div`
 
   .first__row {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     .icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
       width: 24px;
       height: 24px;
-      color: #057a07;
+      color: #5a75ff;
       background: transparent;
     }
 
-    .balance__group {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    .total__balance {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #fff;
 
-      .available__balance {
+      span {
         font-size: 2rem;
-        font-weight: bold;
-        color: #fff;
+        color: grey;
 
-        @media screen and (max-width:425px){
-          font-size:1.3rem;
+        @media screen and (max-width: 425px) {
+          font-size: 1.7rem;
         }
       }
+      @media screen and (max-width: 425px) {
+        font-size: 2.3rem;
+      }
+    }
 
-      p {
-        color: #fff;
+    .btn__group {
+      display: flex;
+      width: 100%;
+      margin-top: 1rem;
+      gap: 1rem;
+
+      justify-content: center;
+    }
+
+    .btn_tab {
+      width: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.3em;
+      background: #5a75ff;
+      color: #fff;
+      padding: 0.5rem 0;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+
+      .icon {
+        width: 1rem;
+        height: 1rem;
+      }
+
+      :hover {
+        opacity: 0.7;
       }
     }
   }
 
-  .second_row {
-    position: absolute;
-    right: 1em;
-    bottom: 2em;
-    text-align: right;
+  // .default_currency {
+  //   position: absolute;
+  //   left: 1em;
+  //   top: 1em;
+  //   width:80px;
 
-    h3 {
-      font-size: 1rem;
-      color: #e24307;
-      margin-bottom: 10px;
-    }
+  //   h3 {
+  //     font-size: 1rem;
+  //     color: #5a75ff;
+  //     margin-bottom: 10px;
+  //   }
 
-    h4 {
-      font-size: 1rem;
-      color: #fff;
-    }
-  }
+  //   h4 {
+  //     font-size: 0.7rem;
+  //     color: #fff;
+  //   }
+  // }
 `;

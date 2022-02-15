@@ -66,7 +66,7 @@ const ModalContainer = styled(Modal)`
     .img {
       width: 86px;
       height: 86px;
-      color: #e24307;
+      color: #5a75ff;
 
       @media screen and (max-width: 425px) {
         width: 64px;

@@ -5,11 +5,7 @@ const Selectfield = (props) => {
   return (
     <Container full={props.full ? props.full : undefined}>
       <div className='group'>
-        <select
-          onChange={props.onValueChange}
-          name={props.name}
-          id={props.id}
-        >
+        <select onChange={props.onValueChange} name={props.name} id={props.id}>
           <option>{props.placeholder}</option>
           {props.data.map((item, index) => {
             return (
@@ -34,7 +30,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     position: relative;
-    height: 48px;
+    height: 36px;
 
     label {
       position: absolute;
