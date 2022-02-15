@@ -60,7 +60,7 @@ const Index = () => {
   };
   return (
     <form onSubmit={handleSubmit} data-aos='fade-left' data-aos-duration='1000'>
-      <div className='group'>
+      <div className='label-group'>
         <FaChevronCircleLeft
           onClick={() => Navigate(-1)}
           style={{ color: '#fff', cursor: 'pointer' }}

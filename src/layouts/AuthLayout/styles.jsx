@@ -91,14 +91,18 @@ export const RightFrame = styled.div`
     right: 1rem;
     width: 60px;
     height: 60px;
-    // border: 1px solid #efefef;
-
+    
     @media screen and (max-width: 425px) {
-      width: 48px;
-      height: 48px;
+      width: 72px;
+      height: 72px;
+      top:0;
+      left:50%;
+      right:0;
+      transform:translate(-50%,50%);
     }
-
+    
     img {
+      border-radius: 25px 5px 25px 5px;
       width: 100%;
       height: 100%;
       object-fit: fill;
@@ -113,6 +117,14 @@ export const RightFrame = styled.div`
     letter-spacing: 0.0015em;
     color: #fff;
     margin-bottom: 1rem !important;
+
+    @media screen and (max-width: 425px) {
+      font-size: 1.8rem;
+    }
+
+    @media screen and (max-width: 320px) {
+      font-size: 1.5rem;
+    }
   }
 
   p {
@@ -151,6 +163,13 @@ export const RightFrame = styled.div`
 
     @media screen and (max-width: 425px) {
       width: 90%;
+    }
+    
+    .label-group {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1em;
     }
 
     .group {
