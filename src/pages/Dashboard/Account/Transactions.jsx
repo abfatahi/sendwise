@@ -14,24 +14,24 @@ const Index = () => {
   const transactionColumns = [
     {
       title: 'S/N',
-      render: (item, record, index) => index + 1,
+      render: (item, record, index) => <b>{index + 1}</b>,
     },
     {
-      title: 'Beneficiary',
-      dataIndex: 'name',
-      key: 'name',
+      title: 'From',
+      dataIndex: 'sender',
+      key: 'sender',
       render: (text) => <Space>{text}</Space>,
     },
     {
-      title: 'Bank Name',
-      dataIndex: 'bank_name',
-      key: 'bank_name',
+      title: 'To',
+      dataIndex: 'receiver',
+      key: 'receiver',
       render: (text) => <Space>{text}</Space>,
     },
     {
-      title: 'Beneficiary Number',
-      dataIndex: 'account_number',
-      key: 'account_number',
+      title: 'Transaction ID',
+      dataIndex: 'transactionId',
+      key: 'transactionId',
       render: (text) => <Space>{text}</Space>,
     },
     {
@@ -41,10 +41,20 @@ const Index = () => {
       render: (text) => <Space>#{text.toLocaleString()}</Space>,
     },
     {
+      title: 'Currency',
+      dataIndex: 'currency',
+      key: 'currency',
+      render: (text) => <Space>{text}</Space>,
+    },
+    {
       title: 'Date',
       dataIndex: 'createdAt',
       key: 'createdAt',
-      render: (text) => <Space>{new Date(text).toLocaleDateString()}</Space>,
+      render: (text) => (
+        <Space>
+          {text ? new Date(text).toLocaleDateString() : '------'}
+        </Space>
+      ),
     },
     {
       title: 'Status',

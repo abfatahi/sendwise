@@ -24,6 +24,12 @@ export const columns = [
     render: (text) => <Space>{text}</Space>,
   },
   {
+    title: 'Currency',
+    dataIndex: 'currency',
+    key: 'currency',
+    render: (text) => <Space>{text}</Space>,
+  },
+  {
     title: 'Amount',
     dataIndex: 'amount',
     key: 'amount',
