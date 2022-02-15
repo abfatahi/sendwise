@@ -1,0 +1,98 @@
+@font-face {
+  font-family: 'wavehaus';
+  src: url('./assets/fonts/wavehaus/Wavehaus-28Thin.otf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'wavehaus';
+  src: url('./assets/fonts/wavehaus/Wavehaus-42Light.otf');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'wavehaus';
+  src: url('./assets/fonts/wavehaus/Wavehaus-66Book.otf');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'wavehaus';
+  src: url('./assets/fonts/wavehaus/Wavehaus-95SemiBold.otf');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'wavehaus';
+  src: url('./assets/fonts/wavehaus/Wavehaus-128Bold.otf');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'wavehaus';
+  src: url('./assets/fonts/wavehaus/Wavehaus-158ExtraBold.otf');
+  font-weight: 900;
+}
+
+html,
+body,
+div {
+  margin: 0;
+  padding: 0;
+  /* overflow-x: hidden !important; */
+  font-family: 'wavehaus', sans-serif;
+}
+
+code {
+  font-family: 'wavehaus', sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  -ms-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+}
+
+/* */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+hr {
+  margin: 0;
+  padding: 0;
+  border: none !important;
+}
+
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td,
+.ant-table tfoot > tr > th,
+.ant-table tfoot > tr > td {
+  position: relative;
+  padding: 8px 16px !important;
+  overflow-wrap: break-word;
+}
+
+.ant-table-thead tr th {
+  background: #3e464e !important;
+  border-bottom: none !important;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff !important;
+}
+
+.ant-table-tbody > tr {
+  font-size: 1rem;
+  padding: 0 !important;
+  color: #666666;
+  box-shadow: 0 2px 3px -2px rgba(0, 0, 0, 0.2);
+}
