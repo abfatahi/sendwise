@@ -18,7 +18,7 @@ function App() {
       <Routes>
         {/* Authentication */}
         <Route path='/login' element={<LoginComponent />} />
-        <Route path='/register' element={<RegisterComponent />} />
+        <Route path='/register/*' element={<RegisterComponent />} />
 
         {/* Dashboard Routes */}
         <Route path='/' element={<ProtectedRoute />}>

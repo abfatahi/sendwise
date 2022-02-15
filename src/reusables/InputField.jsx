@@ -36,8 +36,8 @@ const Container = styled.div`
         ${props.primary &&
         css`
           border: 1px solid #fff;
-          background: transparent;
-          color: #fff;
+          background: #fff;
+          color: #5a75ff;
         `}
 
         ${props.outline &&
@@ -59,17 +59,17 @@ const Container = styled.div`
       }
 
       ::placeholder {
-        color: #bdbdbd;
+        color: #5a75ff;
         opacity: 0.7;
       }
 
       :-ms-input-placeholder {
-        color: #bdbdbd;
+        color: #5a75ff;
         opacity: 0.7;
       }
 
       ::-ms-input-placeholder {
-        color: #bdbdbd;
+        color: #5a75ff;
         opacity: 0.7;
       }
     }

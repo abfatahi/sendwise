@@ -28,7 +28,7 @@ export default styled.div`
     margin-top: 0.5em;
     font-size: ${rem('13px')};
     letter-spacing: ${rem('0.13px')};
-    color: #e24307;
+    color: #5a75ff;
     opacity: 1;
   }
 
@@ -64,7 +64,8 @@ export const LeftFrame = styled.div`
   h1 {
     font-weight: bold;
     font-size: 3rem;
-    color: #e24307;
+    color: #5a75ff;
+    letter-spacing:0.19em;
   }
 
   h2 {
@@ -82,15 +83,20 @@ export const RightFrame = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: #3e464e;
+  background: #5a75ff;
 
   .logo {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    width: 80px;
-    height: 80px;
-    border: 1px solid #efefef;
+    width: 60px;
+    height: 60px;
+    // border: 1px solid #efefef;
+
+    @media screen and (max-width: 425px) {
+      width: 48px;
+    height: 48px;
+    }
 
     img {
       width: 100%;
@@ -114,7 +120,7 @@ export const RightFrame = styled.div`
 
     a {
       font-weight: bold;
-      color: #e24307;
+      color: #5a75ff;
     }
   }
 

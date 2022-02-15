@@ -59,15 +59,20 @@ const Container = styled.button`
   ${(props) => css`
     ${props.primary &&
     css`
+      background: #5a75ff;
+    `}
+    ${props.success &&
+    css`
       background: #057a07;
     `}
     ${props.light &&
     css`
-      background: #f4f4f4;
-      color: #999999;
+      background: #5a75ff;
+      border: 1px solid #fff;
+      color: #fff;
 
       :hover {
-        color: #000000;
+        opacity: 0.7;
       }
     `}
     ${props.secondary &&

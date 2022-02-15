@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  // Hero1,
-  Hero2,
+  Hero1,
+  // Hero2,
   Logo,
 } from '../../assets/images';
 // import { Carousel } from 'react-responsive-carousel';
@@ -16,7 +16,7 @@ const Index = (props) => {
     <Container>
       <LeftFrame>
         {/* <Carousel> */}
-        <img src={Hero2} alt='Hero' />
+        <img src={Hero1} alt='Hero' />
         <br />
         <h2>Welcome to</h2>
         <h1>SENDWISE</h1>

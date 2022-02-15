@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Routes, Route } from 'react-router-dom';
 import { AuthLayout } from '../../../layouts';
 import { Inputfield, Button } from '../../../reusables';
 import Aos from 'aos';
@@ -8,6 +8,7 @@ import { registerSelector } from '../../../redux/reducers/auth/register';
 import { registerAccount } from '../../../redux/actions/auth/register';
 import { isEmail } from '../../../utils/utilities';
 import { RegisterSuccessModal } from './Modal';
+import Step1 from './Step1';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -22,8 +23,11 @@ const Index = () => {
     email: '',
     password: '',
     confirmPass: '',
+    pin: '',
     submitted: false,
   });
+
+  const [step, setStep] = React.useState(0);
 
   const { fullname, email, password, confirmPass, submitted } = user;
 
@@ -42,86 +46,17 @@ const Index = () => {
 
   return (
     <AuthLayout
-      title='Register'
+      title='Create Your Account'
       subtitle={
         <>
           Already have login details? <Link to='/login'>Login Here</Link>
         </>
       }
       content={
-        <>
-          <RegisterSuccessModal />
-          <form
-            onSubmit={handleSubmit}
-            data-aos='fade-left'
-            data-aos-duration='1000'
-          >
-            <div className='input'>
-              <Inputfield
-                primary
-                full
-                placeholder='Fullname'
-                value={fullname}
-                fieldname='fullname'
-                onTextChange={handleChange}
-              />
-              {submitted && !fullname && (
-                <p className='error-msg'>Fullname is required</p>
-              )}
-            </div>
-            <div className='input'>
-              <Inputfield
-                primary
-                full
-                placeholder='Email'
-                value={email}
-                fieldname='email'
-                onTextChange={handleChange}
-              />
-              {submitted && !email && (
-                <p className='error-msg'>Email is required</p>
-              )}
-              {submitted && email && !isEmail(email) && (
-                <p className='error-msg'>Invalid Email Address</p>
-              )}
-            </div>
-            <div className='group'>
-              <div className='input'>
-                <Inputfield
-                  primary
-                  // full
-                  placeholder='Password'
-                  fieldname='password'
-                  value={password}
-                  onTextChange={handleChange}
-                  inputType='password'
-                />
-                {submitted && !password && (
-                  <p className='error-msg'>Password is required</p>
-                )}
-              </div>
-              <div className='input'>
-                <Inputfield
-                  primary
-                  // full
-                  placeholder='Confirm Password'
-                  fieldname='confirmPass'
-                  value={confirmPass}
-                  onTextChange={handleChange}
-                  inputType='password'
-                />
-                {submitted && !confirmPass && (
-                  <p className='error-msg'>Confirm password is required</p>
-                )}
-                {submitted && confirmPass !== password && (
-                  <p className='error-msg'>Password does not match</p>
-                )}
-              </div>
-            </div>
-            {error && <p className='error-msg'>Something went wrong!</p>}
-            <Button loading={loading} full primary text='Register' />
-          </form>
-        </>
+        <Routes>
+          {/* <RegisterSuccessModal /> */}
+          <Route exact path='/' element={<Step1 />} />
+        </Routes>
       }
     />
   );
