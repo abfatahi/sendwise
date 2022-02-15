@@ -1,49 +1,10 @@
 import React from 'react';
 import { Link, Routes, Route } from 'react-router-dom';
 import { AuthLayout } from '../../../layouts';
-import { Inputfield, Button } from '../../../reusables';
-import Aos from 'aos';
-import { useDispatch, useSelector } from 'react-redux';
-import { registerSelector } from '../../../redux/reducers/auth/register';
-import { registerAccount } from '../../../redux/actions/auth/register';
-import { isEmail } from '../../../utils/utilities';
-import { RegisterSuccessModal } from './Modal';
 import Step1 from './Step1';
+import Step2 from './Step2';
 
 const Index = () => {
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    Aos.init();
-  }, []);
-
-  const { error, loading } = useSelector(registerSelector);
-
-  const [user, setUser] = React.useState({
-    fullname: '',
-    email: '',
-    password: '',
-    confirmPass: '',
-    pin: '',
-    submitted: false,
-  });
-
-  const [step, setStep] = React.useState(0);
-
-  const { fullname, email, password, confirmPass, submitted } = user;
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setUser((prevState) => ({ ...prevState, submitted: true }));
-    if (fullname && isEmail(email) && password && password === confirmPass) {
-      dispatch(registerAccount(user));
-    }
-  };
-
   return (
     <AuthLayout
       title='Create Your Account'
@@ -54,8 +15,8 @@ const Index = () => {
       }
       content={
         <Routes>
-          {/* <RegisterSuccessModal /> */}
           <Route exact path='/' element={<Step1 />} />
+          <Route exact path='/step-2' element={<Step2 />} />
         </Routes>
       }
     />

@@ -90,7 +90,7 @@ const Index = () => {
               <span style={{ color: '#fff' }}>Remember me</span>
             </Checkbox>
             {error && <p className='error-msg'>Invalid Login Details!</p>}
-            <Button loading={loading} full primary text='LOGIN' />
+            <Button loading={loading} full dark text='LOGIN' />
           </form>
         </>
       }

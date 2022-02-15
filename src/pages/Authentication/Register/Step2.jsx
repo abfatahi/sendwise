@@ -1,5 +1,6 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { FaChevronCircleLeft } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 // import { AuthLayout } from '../../../layouts';
 import { Inputfield, Button } from '../../../reusables';
 import Aos from 'aos';
@@ -10,7 +11,7 @@ import Aos from 'aos';
 // import { RegisterSuccessModal } from './Modal';
 
 const Index = () => {
-  //   const dispatch = useDispatch();
+  const Navigate = useNavigate();
   React.useEffect(() => {
     Aos.init();
   }, []);
@@ -35,88 +36,92 @@ const Index = () => {
   //     setUser((prevState) => ({ ...prevState, [name]: value }));
   //   };
 
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     setUser((prevState) => ({ ...prevState, submitted: true }));
-  //     if (fullname && isEmail(email) && password && password === confirmPass) {
-  //       dispatch(registerAccount(user));
-  //     }
-  //   };
-  const [email, setEmail] = React.useState('');
+  const [user, setUser] = React.useState({
+    fullname: '',
+    password: '',
+    confirmPass: '',
+  });
+
+  const { fullname, password, confirmPass } = user;
+
+  const [submitted, setSubmitted] = React.useState(false);
+
+  const [loading, setLoading] = React.useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    if (fullname && password && password === confirmPass) {
+      setLoading(true);
+      await new Promise((res) => setTimeout(res, 3000));
+      alert('Cool');
+      //   dispatch(registerAccount(user));
+    }
+  };
   return (
-    <form onSubmit data-aos='fade-left' data-aos-duration='1000'>
-      {}
-      <div className='input' data-aos='fade-left' data-aos-duration='1000'>
+    <form onSubmit={handleSubmit} data-aos='fade-left' data-aos-duration='1000'>
+      <div className='group'>
+        <FaChevronCircleLeft
+          onClick={() => Navigate(-1)}
+          style={{ color: '#fff', cursor: 'pointer' }}
+        />
+        <p>Step 2 of 2</p>
+      </div>
+      <div className='input'>
         <Inputfield
           primary
           full
-          placeholder='Enter your email here'
-          value={email}
-          fieldname='email'
-          onTextChange={(e) => setEmail(e.target.value)}
+          placeholder='Enter your fullname here'
+          value={fullname}
+          fieldname='fullname'
+          onTextChange={(e) =>
+            setUser((prevState) => ({ ...prevState, fullname: e.target.value }))
+          }
         />
-        {/* {submitted && !email && (
-                <p className='error-msg'>Email is required</p>
-              )}
-              {submitted && email && !isEmail(email) && (
-                <p className='error-msg'>Invalid Email Address</p>
-              )} */}
+        {submitted && !fullname && (
+          <p className='error-msg'>Fullname is required</p>
+        )}
       </div>
-      <Button
-        data-aos='fade-left'
-        data-aos-duration='1000'
-        full
-        dark
-        text='Continue'
-      />
-      {/* <div className='input'>
-              <Inputfield
-                primary
-                full
-                placeholder='Fullname'
-                value={fullname}
-                fieldname='fullname'
-                onTextChange={handleChange}
-              />
-              {submitted && !fullname && (
-                <p className='error-msg'>Fullname is required</p>
-              )}
-            </div>
-            <div className='group'>
-              <div className='input'>
-                <Inputfield
-                  primary
-                  // full
-                  placeholder='Password'
-                  fieldname='password'
-                  value={password}
-                  onTextChange={handleChange}
-                  inputType='password'
-                />
-                {submitted && !password && (
-                  <p className='error-msg'>Password is required</p>
-                )}
-              </div>
-              <div className='input'>
-                <Inputfield
-                  primary
-                  // full
-                  placeholder='Confirm Password'
-                  fieldname='confirmPass'
-                  value={confirmPass}
-                  onTextChange={handleChange}
-                  inputType='password'
-                />
-                {submitted && !confirmPass && (
-                  <p className='error-msg'>Confirm password is required</p>
-                )}
-                {submitted && confirmPass !== password && (
-                  <p className='error-msg'>Password does not match</p>
-                )}
-              </div>
-            </div> */}
+      <div className='input'>
+        <Inputfield
+          primary
+          full
+          inputType='password'
+          placeholder='Set your password'
+          value={password}
+          fieldname='password'
+          onTextChange={(e) =>
+            setUser((prevState) => ({ ...prevState, password: e.target.value }))
+          }
+        />
+        {submitted && !password && (
+          <p className='error-msg'>Password is required</p>
+        )}
+      </div>
+      <div className='input'>
+        <Inputfield
+          primary
+          full
+          inputType='password'
+          placeholder='confirm your password'
+          value={confirmPass}
+          fieldname='confirmPass'
+          onTextChange={(e) =>
+            setUser((prevState) => ({
+              ...prevState,
+              confirmPass: e.target.value,
+            }))
+          }
+        />
+        {submitted && !confirmPass && (
+          <p className='error-msg'>Confirm password is required</p>
+        )}
+        {submitted && confirmPass && confirmPass !== password && (
+          <p className='error-msg'>Password does not match</p>
+        )}
+      </div>
+      <Button loading={loading} full dark text='Register' />
       {/* {error && <p className='error-msg'>Something went wrong!</p>} */}
-      {/* <Button loading={loading} full primary text='Register' /> */}
     </form>
   );
 };

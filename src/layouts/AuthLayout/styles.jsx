@@ -7,7 +7,7 @@ export default styled.div`
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  overflow:hidden !important;
+  overflow: hidden !important;
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -28,7 +28,7 @@ export default styled.div`
     margin-top: 0.5em;
     font-size: ${rem('13px')};
     letter-spacing: ${rem('0.13px')};
-    color: #5a75ff;
+    color: orange;
     opacity: 1;
   }
 
@@ -65,7 +65,7 @@ export const LeftFrame = styled.div`
     font-weight: bold;
     font-size: 3rem;
     color: #5a75ff;
-    letter-spacing:0.19em;
+    letter-spacing: 0.19em;
   }
 
   h2 {
@@ -95,7 +95,7 @@ export const RightFrame = styled.div`
 
     @media screen and (max-width: 425px) {
       width: 48px;
-    height: 48px;
+      height: 48px;
     }
 
     img {
@@ -120,7 +120,7 @@ export const RightFrame = styled.div`
 
     a {
       font-weight: bold;
-      color: #5a75ff;
+      color: orange;
     }
   }
 
@@ -156,14 +156,15 @@ export const RightFrame = styled.div`
     .group {
       width: 100%;
       display: flex;
+      align-items: center;
       gap: 1em;
 
       @media screen and (max-width: 425px) {
-        flex-direction:column;
+        flex-direction: column;
       }
 
-      .input{
-        width:100%;
+      .input {
+        width: 100%;
       }
     }
   }

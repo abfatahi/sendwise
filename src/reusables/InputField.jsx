@@ -19,7 +19,7 @@ const Container = styled.div`
       margin-right: 1em;
       // width: 1rem;
       cursor: pointer;
-      color: #fff;
+      color: #5a75ff;
     }
 
     input {
