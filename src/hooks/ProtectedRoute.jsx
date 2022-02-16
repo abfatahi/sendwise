@@ -7,7 +7,7 @@ const Index = ({ component: Component, ...rest }) => {
   if (token !== null || undefined || '') {
     isAuthorized = true;
   }
-  return isAuthorized ? <Outlet /> : <Navigate to='/login' />;
+  return !isAuthorized ? <Outlet /> : <Navigate to='/login' />;
 };
 
 export default Index;
