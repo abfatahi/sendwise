@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { validateAccount } from '../../../redux/actions/account';
+// import { validateAccount } from '../../../redux/actions/account';
 import { Button, Inputfield, Selectfield } from '../../../reusables';
-import { bankList } from '../../../utils/data';
+// import { bankList } from '../../../utils/data';
 import Container, { TransferContainer } from './styles';
 import { accountSelector } from '../../../redux/reducers/account';
 import { transferFunds } from '../../../redux/actions/transfers';
@@ -16,8 +16,8 @@ const Index = () => {
   const dispatch = useDispatch();
 
   const {
-    validateBankLoading,
-    validateBankError,
+    // validateBankLoading,
+    // validateBankError,
     validateBankSuccess,
     accountName,
   } = useSelector(accountSelector);
@@ -41,15 +41,15 @@ const Index = () => {
     name,
     account_number,
     amount,
-    reason,
-    submitted,
-    isValidAccount,
+    // reason,
+    // submitted,
+    // isValidAccount,
   } = newTransfer;
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewTransfer((prevState) => ({ ...prevState, [name]: value }));
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setNewTransfer((prevState) => ({ ...prevState, [name]: value }));
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -59,25 +59,25 @@ const Index = () => {
     }
   };
 
-  const handleValidateAccount = (e) => {
-    e.preventDefault();
-    if (account_number.length === 10) {
-      setNewTransfer((prevState) => ({
-        ...prevState,
-        isValidAccount: true,
-      }));
-      const payload = {
-        bank_code,
-        account_number,
-      };
-      dispatch(validateAccount(payload));
-    } else if (account_number.length < 10 || account_number.length > 10) {
-      setNewTransfer((prevState) => ({
-        ...prevState,
-        isValidAccount: false,
-      }));
-    }
-  };
+  // const handleValidateAccount = (e) => {
+  //   e.preventDefault();
+  //   if (account_number.length === 10) {
+  //     setNewTransfer((prevState) => ({
+  //       ...prevState,
+  //       isValidAccount: true,
+  //     }));
+  //     const payload = {
+  //       bank_code,
+  //       account_number,
+  //     };
+  //     dispatch(validateAccount(payload));
+  //   } else if (account_number.length < 10 || account_number.length > 10) {
+  //     setNewTransfer((prevState) => ({
+  //       ...prevState,
+  //       isValidAccount: false,
+  //     }));
+  //   }
+  // };
 
   React.useEffect(() => {
     if (validateBankSuccess) {
