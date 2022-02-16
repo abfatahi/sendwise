@@ -14,7 +14,7 @@ const Index = (props) => {
           <h3>
             {props.currency} ({props.symbol})
           </h3>
-          <h1>{showBalance ? props.balance : 'XXXXXX'}</h1>
+          <h1>{showBalance ? props.balance : <span>XXXXXX</span>}</h1>
         </>
       )}
     </Container>
@@ -47,7 +47,10 @@ const Container = styled.div`
     font-weight: bold;
     color: #fff;
 
-    @media screen and (max-width:425px){
+    span {
+      font-size: 1.5rem;
+    }
+    @media screen and (max-width: 425px) {
       font-size: 1.6rem;
     }
   }

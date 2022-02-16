@@ -9,6 +9,7 @@ export const transferSlice = createSlice({
     loading: false,
     error: false,
     success: false,
+    activeTab: 'saved',
   },
 
   reducers: {
@@ -18,8 +19,12 @@ export const transferSlice = createSlice({
       state.success = false;
       return state;
     },
+    toggleActiveTab: (state, { payload }) => {
+      state.activeTab = payload;
+      return state;
+    },
   },
-  
+
   extraReducers: {
     [transferFunds.pending]: (state) => {
       state.loading = true;
@@ -42,6 +47,6 @@ export const transferSlice = createSlice({
   },
 });
 
-export const { clearState } = transferSlice.actions;
+export const { clearState, toggleActiveTab } = transferSlice.actions;
 
 export const transferSelector = (state) => state.transfer;

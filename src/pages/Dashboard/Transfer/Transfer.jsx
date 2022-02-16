@@ -6,7 +6,10 @@ import { bankList } from '../../../utils/data';
 import Container, { TransferContainer } from './styles';
 import { accountSelector } from '../../../redux/reducers/account';
 import { transferFunds } from '../../../redux/actions/transfers';
-import { transferSelector } from '../../../redux/reducers/transfers';
+import {
+  toggleActiveTab,
+  transferSelector,
+} from '../../../redux/reducers/transfers';
 import { TransferFailureModal } from './Modal';
 
 const Index = () => {
@@ -19,7 +22,7 @@ const Index = () => {
     accountName,
   } = useSelector(accountSelector);
 
-  const { loading } = useSelector(transferSelector);
+  const { loading, activeTab } = useSelector(transferSelector);
 
   const [newTransfer, setNewTransfer] = React.useState({
     bank_name: '',
@@ -91,16 +94,24 @@ const Index = () => {
       <h1>Funds Transfer</h1>
       <p>Send money to anyone. it's Quick and Easy</p>
       <TransferContainer onSubmit={handleSubmit}>
-        <h3>Daily Transfer limit: #10,000,0000</h3>
-        <p>
-          Min Transaction Amount: <b>#100</b>{' '}
-        </p>
-        <p>
-          Min Transaction Amount: <b>#10,000,000</b>
-        </p>
+        <div className='tab_group'>
+          <div
+            onClick={() => dispatch(toggleActiveTab('saved'))}
+            className={`tab ${activeTab === 'saved' ? 'active' : ''}`}
+          >
+            Saved Beneficiary
+          </div>
+          <div
+            onClick={() => dispatch(toggleActiveTab('new'))}
+            className={`tab ${activeTab === 'new' ? 'active' : ''}`}
+          >
+            New Beneficiary
+          </div>
+        </div>
         <br />
         <div className='input__group'>
           <div className='input'>
+            Select Balance
             <Selectfield
               onValueChange={(e) => {
                 setNewTransfer((prevState) => ({
@@ -109,97 +120,102 @@ const Index = () => {
                   bank_name: e.target.options[e.target.selectedIndex].text,
                 }));
               }}
-              placeholder="Select Beneficiary's Bank"
-              data={bankList}
+              placeholder='USD'
+              data={[
+                { name: 'USD', value: 'USD' },
+                { name: 'EUR', value: 'EUR' },
+                { name: 'NGN', value: 'NGN' },
+              ]}
             />
             {/* {submitted && !bank_name && (
               <p className='error-msg'>Beneficiary bank is required</p>
             )} */}
           </div>
-          {bank_code && (
-            <div className='group'>
-              <Inputfield
-                fieldname='account_number'
-                outline
-                value={account_number}
-                placeholder='Enter Account Number'
-                onTextChange={handleChange}
-              />
-              {!name && (
-                <Button
-                  onClick={handleValidateAccount}
-                  loading={validateBankLoading}
-                  primary
-                  text='Validate'
+          {activeTab === 'saved' && (
+            <>
+              <div className='input'>
+                Beneficiary
+                <Selectfield
+                  onValueChange={(e) => {
+                    setNewTransfer((prevState) => ({
+                      ...prevState,
+                      bank_code: e.target.value,
+                      bank_name: e.target.options[e.target.selectedIndex].text,
+                    }));
+                  }}
+                  placeholder='John Doe'
+                  data={[
+                    { name: 'Nicola Tesla', value: 'Nicola Tesla' },
+                    { name: 'Ishaq Abdulfatahi', value: 'Ishaq Abdulfatahi' },
+                    { name: 'John Doe', value: 'John Doe' },
+                  ]}
                 />
-              )}
-            </div>
+                {/* {submitted && !bank_name && (
+              <p className='error-msg'>Beneficiary bank is required</p>
+            )} */}
+              </div>
+              <div className='input'>
+                Beneficiary Number
+                <Inputfield outline placeholder='0837478974' />
+                {/* {submitted && !bank_name && (
+              <p className='error-msg'>Beneficiary bank is required</p>
+            )} */}
+              </div>
+            </>
           )}
-          {validateBankError && (
-            <p className='error-msg'>Unable to validate account!</p>
+          {activeTab === 'new' && (
+            <>
+              <div className='input'>
+                Beneficiary Number
+                <Inputfield outline placeholder='0000377444' />
+                {/* {submitted && !bank_name && (
+              <p className='error-msg'>Beneficiary bank is required</p>
+            )} */}
+              </div>
+              <div className='input'>
+                Beneficiary
+                <Inputfield outline placeholder='John Doe' />
+                {/* {submitted && !bank_name && (
+              <p className='error-msg'>Beneficiary bank is required</p>
+            )} */}
+              </div>
+            </>
           )}
-          {submitted && !account_number && (
-            <p className='error-msg'>Beneficiary account number is required</p>
-          )}
-          {isValidAccount === false &&
-            (account_number.length < 10 || account_number.length > 10) && (
-              <p className='error-msg'>Invalid Account Number</p>
-            )}
-          {name && (
-            <div className='input'>
-              <Inputfield
-                fieldname='name'
-                outline
-                value={name}
-                readOnly
-                onTextChange={handleChange}
-              />
-              {submitted && !name && (
-                <p className='error-msg'>Beneficiary name is required</p>
-              )}
-            </div>
-          )}
-          {bank_code && !name && (
-            <p>
-              <b> Validate Account Number to Proceed</b>
-            </p>
-          )}
+
           <div className='input'>
-            <Inputfield
-              fieldname='amount'
-              outline
-              inputType='number'
-              value={amount}
-              placeholder='Enter Amount between 100 - 10,000,000'
-              readOnly={!name ? true : false}
-              onTextChange={handleChange}
-            />
-            {submitted && !amount && (
-              <p className='error-msg'>Transfer amount is required</p>
-            )}
-            {submitted && amount && parseInt(amount) > 10000000 && (
-              <p className='error-msg'>Maximum transfer amount is #1000000</p>
-            )}
-            {submitted && amount && parseInt(amount) < 100 && (
-              <p className='error-msg'>Minimum transfer amount is #100</p>
-            )}
+            Amount
+            <Inputfield outline placeholder='0.00' />
+            {/* {submitted && !bank_name && (
+              <p className='error-msg'>Beneficiary bank is required</p>
+            )} */}
           </div>
           <div className='input'>
-            <Inputfield
-              fieldname='reason'
-              outline
-              value={reason}
-              readOnly={!name ? true : false}
-              placeholder='reason (Optional)'
-              onTextChange={handleChange}
+            Select Target Currency
+            <Selectfield
+              onValueChange={(e) => {
+                setNewTransfer((prevState) => ({
+                  ...prevState,
+                  bank_code: e.target.value,
+                  bank_name: e.target.options[e.target.selectedIndex].text,
+                }));
+              }}
+              placeholder='USD'
+              data={[
+                { name: 'USD', value: 'USD' },
+                { name: 'EUR', value: 'EUR' },
+                { name: 'NGN', value: 'NGN' },
+              ]}
             />
+            {/* {submitted && !bank_name && (
+              <p className='error-msg'>Beneficiary bank is required</p>
+            )} */}
           </div>
           <br />
           <Button
             loading={loading}
             disabled={!name ? true : false}
             full
-            dark
+            info
             text='Continue'
           />
         </div>

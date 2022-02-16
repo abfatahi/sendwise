@@ -10,8 +10,6 @@ import {
   accountSelector,
 } from '../../../redux/reducers/account';
 import { transferSelector } from '../../../redux/reducers/transfers';
-import { AccountTab } from '../../../components/Account';
-import { FaExchangeAlt, FaHistory } from 'react-icons/fa';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -29,12 +27,11 @@ const Index = () => {
           <div className='header'>
             <h3>ACCOUNT SUMMARY</h3>
             <div className='balance__group'>
-              <b>SHOW BALANCE</b>
+              {showBalance ? <b>Hide Balance</b> : <b>Show Balance</b>}
               <Switch
                 style={{ background: '#5a75ff' }}
                 onChange={() => dispatch(toggleShowBalance())}
               />
-              {showBalance ? <b>ON</b> : <b>OFF</b>}
             </div>
           </div>
           <div className='card_group'>

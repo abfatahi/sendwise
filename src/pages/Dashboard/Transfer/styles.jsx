@@ -24,12 +24,33 @@ export const TransferContainer = styled.form`
   flex-direction: column;
   // gap: 1.2rem;
 
-  @media screen and (max-width:1024px){
-    width:60%;
+  @media screen and (max-width: 1024px) {
+    width: 60%;
   }
 
-  @media screen and (max-width:768px){
-    width:100%;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+
+  .active{
+    background: #5a75ff;
+    color:#fff !important;
+  }
+
+  .tab {
+    flex:1;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor:pointer;
+    color: #5a75ff;
+  }
+
+  .tab_group {
+    display: flex;
+    border:1px solid #5a75ff;
   }
 
   h3 {
@@ -37,14 +58,14 @@ export const TransferContainer = styled.form`
   }
 
   p {
-    font-size:0.8em;
+    font-size: 0.8em;
     margin: 0 !important;
     padding: 0 !important;
   }
-.group{
-  display:flex;
-  gap: 1rem;
-}
+  .group {
+    display: flex;
+    gap: 1rem;
+  }
   .input__group {
     // width: 50px;
     display: flex;
