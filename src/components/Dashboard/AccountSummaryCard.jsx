@@ -24,16 +24,18 @@ const Index = () => {
               {showBalance ? totalBalance.toFixed(2) : 'XXXXXX'}
             </div>
             <div className='btn__group'>
-              <div className='btn_tab'>
-                <FaExchangeAlt
-                  onClick={() => Navigate('/transfer/funds-transfer')}
-                />
+              <div
+                onClick={() => Navigate('/transfer/funds-transfer')}
+                className='btn_tab'
+              >
+                <FaExchangeAlt />
                 Transfer
               </div>
-              <div className='btn_tab'>
-                <FaHistory
-                  onClick={() => Navigate('/account/transaction-history')}
-                />
+              <div
+                onClick={() => Navigate('/account/transaction-history')}
+                className='btn_tab'
+              >
+                <FaHistory />
                 Transactions
               </div>
             </div>
