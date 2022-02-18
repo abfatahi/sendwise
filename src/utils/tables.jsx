@@ -1,6 +1,7 @@
 import { Space } from 'antd';
+let self = '';
 const user = JSON.parse(sessionStorage.getItem('user'));
-let self = user.accountNumber;
+if (user) self = user.accountNumber;
 
 export const columns = [
   {

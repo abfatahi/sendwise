@@ -117,7 +117,6 @@ const Index = () => {
                 setNewTransfer((prevState) => ({
                   ...prevState,
                   bank_code: e.target.value,
-                  bank_name: e.target.options[e.target.selectedIndex].text,
                 }));
               }}
               placeholder='USD'
@@ -152,7 +151,7 @@ const Index = () => {
               </div>
               <div className='input'>
                 Beneficiary Number
-                <Inputfield outline placeholder='0837478974' />
+                <Inputfield outline placeholder='0837478974' readOnly />
                 {/* {submitted && !bank_name && (
               <p className='error-msg'>Beneficiary bank is required</p>
             )} */}
