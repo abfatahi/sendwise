@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { Logo as logo } from '../../assets/images';
 
 const Navbar = (props) => {
-  const loggedInUser = JSON.parse(localStorage.getItem('user'));
+  const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
   const Navigate = useNavigate();
   const signout = () => {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     Navigate('/login');
   };
 
@@ -24,8 +24,8 @@ const Navbar = (props) => {
         <NotificationIcon />
         <Avatar />
         <UserProfile>
-          <p>{loggedInUser.fullname}</p>
-          <span>0089728686</span>
+          <p>{loggedInUser.fullName}</p>
+          <span>{loggedInUser.accountNumber}</span>
         </UserProfile>
         <Logo src={logo} />
       </NavMenu>
@@ -126,8 +126,11 @@ const UserProfile = styled.div`
     text-align: center;
     letter-spacing: 0.001em;
     color: #666666;
-    margin-bottom: 0.2em !important;
+    text-transform:capitalize;
+    padding:0 !important;
+    margin-bottom: 0.1em !important;
   }
+
   span {
     font-style: normal;
     font-weight: normal;

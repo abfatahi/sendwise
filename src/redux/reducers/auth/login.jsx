@@ -6,7 +6,7 @@ export const loginSlice = createSlice({
   initialState: {
     loading: false,
     error: false,
-    errors: [],
+    errors: null,
     success: false,
   },
   reducers: {
@@ -26,7 +26,7 @@ export const loginSlice = createSlice({
       state.loading = false;
       state.error = false;
       state.success = true;
-      state.errors = [];
+      state.errors = null;
       return state;
     },
     [loginAccount.rejected]: (state, { payload }) => {

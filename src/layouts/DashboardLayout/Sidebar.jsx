@@ -15,9 +15,9 @@ import { useDispatch } from 'react-redux';
 const Sidebar = (props) => {
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = React.useState('Dashboard');
-  const loggedInUser = JSON.parse(localStorage.getItem('user'));
+  const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
   React.useEffect(() => {
-    const tab = localStorage.getItem('tab');
+    const tab = sessionStorage.getItem('tab');
     setActiveTab(tab);
   }, []);
 
@@ -27,14 +27,14 @@ const Sidebar = (props) => {
       <div className='user_info'>
         <FaUserAlt className='avatar' />
         <div className='group'>
-          <h2>{loggedInUser.fullname}</h2>
-          <h3>0089728686</h3>
+          <h2>{loggedInUser.fullName}</h2>
+          <h3>{loggedInUser.accountNumber}</h3>
         </div>
       </div>
 
       <SidebarTabs
         onClick={() => {
-          localStorage.setItem('tab', 'Dashboard');
+          sessionStorage.setItem('tab', 'Dashboard');
           dispatch(toggleSidebar());
         }}
         className={activeTab === 'Dashboard' ? 'active' : ''}
@@ -45,7 +45,7 @@ const Sidebar = (props) => {
       </SidebarTabs>
       <SidebarTabs
         onClick={() => {
-          localStorage.setItem('tab', 'Accounts');
+          sessionStorage.setItem('tab', 'Accounts');
           dispatch(toggleSidebar());
         }}
         className={activeTab === 'Accounts' ? 'active' : ''}
@@ -56,7 +56,7 @@ const Sidebar = (props) => {
       </SidebarTabs>
       <SidebarTabs
         onClick={() => {
-          localStorage.setItem('tab', 'Transfers');
+          sessionStorage.setItem('tab', 'Transfers');
           dispatch(toggleSidebar());
         }}
         className={activeTab === 'Transfers' ? 'active' : ''}
@@ -67,7 +67,7 @@ const Sidebar = (props) => {
       </SidebarTabs>
       <SidebarTabs
         onClick={() => {
-          localStorage.removeItem('token');
+          sessionStorage.removeItem('token');
           dispatch(toggleSidebar());
         }}
         className='logout__btn'
@@ -163,6 +163,7 @@ const Container = styled.div`
       h2 {
         font-size: 1rem;
         color: #5a75ff;
+        text-transform: capitalize;
       }
 
       h3 {

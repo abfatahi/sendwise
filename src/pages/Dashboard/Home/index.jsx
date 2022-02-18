@@ -13,6 +13,8 @@ import { transferSelector } from '../../../redux/reducers/transfers';
 
 const Index = () => {
   const dispatch = useDispatch();
+  const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
+  let { EURBalance, USDBalance, NGNBalance } = loggedInUser;
   const { showBalance } = useSelector(accountSelector);
   const { transfers } = useSelector(transferSelector);
   return (
@@ -39,9 +41,9 @@ const Index = () => {
             <div className='assets'>
               <h3>Account Balance Breakdown</h3>
               <div className='group'>
-                <BalanceCard symbol='$' currency='USD' balance='1,000' />
-                <BalanceCard symbol='€' currency='EUR' balance='1,000' />
-                <BalanceCard symbol='₦' currency='NGN' balance='1,000' />
+                <BalanceCard symbol='$' currency='USD' balance={USDBalance} />
+                <BalanceCard symbol='€' currency='EUR' balance={EURBalance} />
+                <BalanceCard symbol='₦' currency='NGN' balance={NGNBalance} />
               </div>
             </div>
           </div>

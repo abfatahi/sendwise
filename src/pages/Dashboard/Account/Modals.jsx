@@ -10,7 +10,7 @@ import {
 export const TransferDetailsModal = (props, { status = 'pending' }) => {
   const dispatch = useDispatch();
   const { showTransferModal } = useSelector(accountSelector);
-  const transaction = JSON.parse(localStorage.getItem('selectedTransaction'));
+  const transaction = JSON.parse(sessionStorage.getItem('selectedTransaction'));
   return (
     <ModalContainer
       centered={true}

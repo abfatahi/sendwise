@@ -19,10 +19,10 @@ export const loginAccount = createAsyncThunk(
       let data = await response.json();
       if (data.status === 'success') {
         sessionStorage.setItem('token', data.token);
-        sessionStorage.setItem('loggedInUser', JSON.stringify(data.data));
+        sessionStorage.setItem('user', JSON.stringify(data.data));
         return data;
       } else {
-        return thunkAPI.rejectWithValue([data]);
+        return thunkAPI.rejectWithValue(data);
       }
     } catch (err) {
       return thunkAPI.rejectWithValue([

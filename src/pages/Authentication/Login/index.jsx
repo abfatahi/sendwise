@@ -15,11 +15,11 @@ const Index = () => {
   }, []);
   const dispatch = useDispatch();
   const Navigate = useNavigate();
-  const { success, error, loading } = useSelector(loginSelector);
+  const { success, error, errors, loading } = useSelector(loginSelector);
 
   const [user, setUser] = React.useState({
     email: 'abfatahi.iaf@gmail.com',
-    password: 'test1234',
+    password: 'Test1234!',
     submitted: false,
   });
 
@@ -89,7 +89,15 @@ const Index = () => {
             <Checkbox>
               <span style={{ color: '#fff' }}>Remember me</span>
             </Checkbox>
-            {error && <p className='error-msg'>Invalid Login Details!</p>}
+            {error &&
+              errors &&
+              errors.map((item, index) => {
+                return (
+                  <p key={index} className='error-msg'>
+                    {item.message || item.msg}
+                  </p>
+                );
+              })}
             <Button loading={loading} full dark text='LOGIN' />
           </form>
         </>

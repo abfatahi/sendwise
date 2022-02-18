@@ -5,7 +5,7 @@ import { accountSelector } from '../../redux/reducers/account';
 // import { Radio } from 'antd';
 
 const Index = (props) => {
-  const loggedInUser = JSON.parse(localStorage.getItem('user'));
+  const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
   const { showBalance } = useSelector(accountSelector);
   return (
     <Container>

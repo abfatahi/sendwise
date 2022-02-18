@@ -51,9 +51,7 @@ const Index = () => {
       dataIndex: 'createdAt',
       key: 'createdAt',
       render: (text) => (
-        <Space>
-          {text ? new Date(text).toLocaleDateString() : '------'}
-        </Space>
+        <Space>{text ? new Date(text).toLocaleDateString() : '------'}</Space>
       ),
     },
     {
@@ -87,7 +85,7 @@ const Index = () => {
         <Space
           onClick={() => {
             dispatch(toggleShowTranferModal());
-            localStorage.setItem('selectedTransaction', JSON.stringify(row));
+            sessionStorage.setItem('selectedTransaction', JSON.stringify(row));
           }}
           style={{
             cursor: 'pointer',

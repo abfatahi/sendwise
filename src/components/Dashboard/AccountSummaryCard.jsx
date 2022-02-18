@@ -7,27 +7,19 @@ import { accountSelector } from '../../redux/reducers/account';
 // import { Radio } from 'antd';
 
 const Index = () => {
-  const loggedInUser = JSON.parse(localStorage.getItem('user'));
+  const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
+  let { EURBalance, USDBalance, NGNBalance } = loggedInUser;
+  let totalBalance =
+    parseFloat(EURBalance) + parseFloat(USDBalance) + parseFloat(NGNBalance);
   const { showBalance } = useSelector(accountSelector);
   return (
     <Container>
       {loggedInUser && (
         <>
-          {/* <div className='default_currency'>
-            <Selectfield
-            full
-              placeholder='USD'
-              data={[
-                { name: 'USD', value: 'USD' },
-                { name: 'EUR', value: 'EUR' },
-                { name: 'NGN', value: 'NGN' },
-              ]}
-            />
-          </div> */}
           <div className='first__row'>
             <div className='total__balance'>
               <span>USD</span>&nbsp;
-              {showBalance ? '2450' : 'XXXXXX'}
+              {showBalance ? totalBalance : 'XXXXXX'}
             </div>
             <div className='btn__group'>
               <div className='btn_tab'>

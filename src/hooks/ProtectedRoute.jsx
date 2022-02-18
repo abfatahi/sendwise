@@ -3,7 +3,7 @@ import { Outlet, Navigate } from 'react-router-dom';
 
 const Index = ({ component: Component, ...rest }) => {
   let isAuthorized = false;
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   if (token !== null) {
     isAuthorized = true;
   }
