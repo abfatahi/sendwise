@@ -3,7 +3,6 @@ import { Table } from 'antd';
 import Container, { GoBack } from './styles';
 import { TransferDetailsModal } from './Modals';
 import { useDispatch, useSelector } from 'react-redux';
-import { transferSelector } from '../../../redux/reducers/transfers';
 import { useNavigate } from 'react-router-dom';
 import { columns } from '../../../utils/tables';
 import { getTransactions } from '../../../redux/actions/account';

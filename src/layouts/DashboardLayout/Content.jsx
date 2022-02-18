@@ -14,8 +14,6 @@ const Container = styled.div`
   top: 60px;
   left: 250px;
   width: calc(100vw - 250px);
-  height: -webkit-calc(100% - 60px);
-  height: -moz-calc(100% - 60px);
   min-height: calc(100vh - 60px);
   background: #efefef;
   padding: 2rem 3rem;

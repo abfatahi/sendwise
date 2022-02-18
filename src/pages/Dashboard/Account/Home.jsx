@@ -11,12 +11,12 @@ const Index = () => {
       <CardWrapper>
         <AccountTab
           text='Transaction History'
-          icon={<FaHistory className='icon' />}
+          icon={<FaHistory className='iconStyle' />}
           link='/account/transaction-history'
         />
         <AccountTab
           text='Account Statement'
-          icon={<FaWallet className='icon' />}
+          icon={<FaWallet className='iconStyle' />}
           // link='/account/statement'
         />
       </CardWrapper>

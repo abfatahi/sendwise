@@ -49,7 +49,7 @@ const Container = styled.div`
       background: #5a75ff !important;
       color: #fff !important;
 
-      .icon {
+      .iconStyle {
         color: #fff !important;
       }
 
@@ -65,9 +65,8 @@ const Container = styled.div`
     padding: 1rem;
   }
 
-  .icon {
-    width: 30px !important;
-    height: 50px !important;
+  .iconStyle {
+    font-size: 2rem !important;
     color: #000;
     background: transparent;
   }
@@ -84,7 +83,7 @@ const Container = styled.div`
       font-size: 1.3rem;
     }
 
-    .icon {
+    .iconStyle {
       color: #fff;
     }
   }
