@@ -26,7 +26,21 @@ export const transferFunds = createAsyncThunk(
 
       let data = await response.json();
       if (data.status === 'success') {
-        return data;
+        const response = await fetch(`${baseURL}user/details`, {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+          },
+        });
+        let result = await response.json();
+        if (result.status === 'success') {
+          sessionStorage.setItem('user', JSON.stringify(result.data));
+          return data;
+        } else {
+          return thunkAPI.rejectWithValue(data);
+        }
       } else {
         await new Promise((res) => setTimeout(res, 3000));
         return thunkAPI.rejectWithValue(data);
