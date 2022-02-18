@@ -26,7 +26,7 @@ export default Index;
 const Container = styled.div`
   width: 150px;
   height: 100px;
-  background: #057a07;
+  background: #3e464e;
   border-radius: 10px;
   // padding: 2rem 1rem;
   display: flex;
@@ -37,21 +37,19 @@ const Container = styled.div`
   cursor: pointer;
 
   h3 {
-    font-weight: bold;
     font-size: 1rem;
     color: #fff;
   }
 
   h1 {
     font-size: 2rem;
-    font-weight: bold;
     color: #fff;
 
     span {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
     }
     @media screen and (max-width: 425px) {
-      font-size: 1.6rem;
+      font-size: 1.2rem;
     }
   }
 
