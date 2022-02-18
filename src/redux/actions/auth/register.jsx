@@ -1,15 +1,28 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { baseURL } from '../../../utils/api';
 
 export const registerAccount = createAsyncThunk(
   'register/account',
-  async ({ fullname, email, password }, thunkAPI) => {
+  async ({ fullName, email, password }, thunkAPI) => {
     try {
-      await new Promise((res) => setTimeout(res, 3000));
-      localStorage.setItem(
-        'user',
-        JSON.stringify({ fullname, email, password })
-      );
-      return true;
+      const response = await fetch(`${baseURL}user/register`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          fullName,
+        }),
+      });
+      let data = await response.json();
+      if (data.status === 'success') {
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue([data]);
+      }
     } catch (err) {
       return thunkAPI.rejectWithValue([
         {
