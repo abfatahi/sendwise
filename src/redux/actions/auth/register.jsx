@@ -21,7 +21,7 @@ export const registerAccount = createAsyncThunk(
       if (data.status === 'success') {
         return data;
       } else {
-        return thunkAPI.rejectWithValue([data]);
+        return thunkAPI.rejectWithValue(data);
       }
     } catch (err) {
       return thunkAPI.rejectWithValue([

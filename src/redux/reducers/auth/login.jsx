@@ -13,6 +13,7 @@ export const loginSlice = createSlice({
     clearState: (state) => {
       state.loading = false;
       state.error = false;
+      state.errors = null;
       state.success = false;
       return state;
     },

@@ -6,12 +6,14 @@ export const registerSlice = createSlice({
   initialState: {
     loading: false,
     error: false,
+    errors: null,
     success: false,
   },
   reducers: {
     clearState: (state) => {
       state.loading = false;
       state.error = false;
+      state.errors = null;
       state.success = false;
       return state;
     },
@@ -25,11 +27,13 @@ export const registerSlice = createSlice({
       state.loading = false;
       state.error = false;
       state.success = true;
+      state.errors = null;
       return state;
     },
-    [registerAccount.rejected]: (state) => {
+    [registerAccount.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = true;
+      state.errors = payload.errors;
       state.success = false;
       return state;
     },

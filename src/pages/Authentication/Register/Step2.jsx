@@ -1,65 +1,44 @@
 import React from 'react';
 import { FaChevronCircleLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-// import { AuthLayout } from '../../../layouts';
 import { Inputfield, Button } from '../../../reusables';
 import Aos from 'aos';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { registerSelector } from '../../../redux/reducers/auth/register';
-// import { registerAccount } from '../../../redux/actions/auth/register';
-// import { isEmail } from '../../../utils/utilities';
-// import { RegisterSuccessModal } from './Modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerSelector } from '../../../redux/reducers/auth/register';
+import { registerAccount } from '../../../redux/actions/auth/register';
+import { RegisterSuccessModal } from './Modal';
 
 const Index = () => {
+  const dispatch = useDispatch();
+  const userEmail = localStorage.getItem('email');
   const Navigate = useNavigate();
   React.useEffect(() => {
     Aos.init();
   }, []);
 
-  //   const { error, loading } = useSelector(registerSelector);
-
-  //   const [user, setUser] = React.useState({
-  //     fullname: '',
-  //     email: '',
-  //     password: '',
-  //     confirmPass: '',
-  //     pin: '',
-  //     submitted: false,
-  //   });
-
-  //   const [step,setStep] = React.useState(0);
-
-  //   const { fullname, email, password, confirmPass, submitted } = user;
-
-  //   const handleChange = (e) => {
-  //     const { name, value } = e.target;
-  //     setUser((prevState) => ({ ...prevState, [name]: value }));
-  //   };
+  const { error, errors, loading } = useSelector(registerSelector);
 
   const [user, setUser] = React.useState({
-    fullname: '',
+    fullName: '',
     password: '',
+    email: userEmail,
     confirmPass: '',
   });
 
-  const { fullname, password, confirmPass } = user;
+  const { fullName, password, confirmPass } = user;
 
   const [submitted, setSubmitted] = React.useState(false);
-
-  const [loading, setLoading] = React.useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
-    if (fullname && password && password === confirmPass) {
-      setLoading(true);
-      await new Promise((res) => setTimeout(res, 3000));
-      alert('Cool');
-      //   dispatch(registerAccount(user));
+    if (fullName && password && password === confirmPass) {
+      dispatch(registerAccount(user));
     }
   };
   return (
     <form onSubmit={handleSubmit} data-aos='fade-left' data-aos-duration='1000'>
+      <RegisterSuccessModal />
       <div className='label-group'>
         <FaChevronCircleLeft
           onClick={() => Navigate(-1)}
@@ -72,13 +51,13 @@ const Index = () => {
           primary
           full
           placeholder='Enter your fullname here'
-          value={fullname}
-          fieldname='fullname'
+          value={fullName}
+          fieldname='fullName'
           onTextChange={(e) =>
-            setUser((prevState) => ({ ...prevState, fullname: e.target.value }))
+            setUser((prevState) => ({ ...prevState, fullName: e.target.value }))
           }
         />
-        {submitted && !fullname && (
+        {submitted && !fullName && (
           <p className='error-msg'>Fullname is required</p>
         )}
       </div>
@@ -120,8 +99,16 @@ const Index = () => {
           <p className='error-msg'>Password does not match</p>
         )}
       </div>
+      {error &&
+        errors &&
+        errors.map((item, index) => {
+          return (
+            <p key={index} className='error-msg'>
+              {item.message || item.msg}
+            </p>
+          );
+        })}
       <Button loading={loading} full dark text='Register' />
-      {/* {error && <p className='error-msg'>Something went wrong!</p>} */}
     </form>
   );
 };

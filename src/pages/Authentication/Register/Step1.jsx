@@ -1,22 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { AuthLayout } from '../../../layouts';
 import { Inputfield, Button } from '../../../reusables';
 import Aos from 'aos';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { registerSelector } from '../../../redux/reducers/auth/register';
-// import { registerAccount } from '../../../redux/actions/auth/register';
 import { isEmail } from '../../../utils/utilities';
-// import { RegisterSuccessModal } from './Modal';
 
 const Index = () => {
-  //   const dispatch = useDispatch();
   const Navigate = useNavigate();
   React.useEffect(() => {
     Aos.init();
   }, []);
-
-  //   const { error, loading } = useSelector(registerSelector);
 
   const [email, setEmail] = React.useState('');
   const [submitted, setSubmitted] = React.useState(false);
@@ -30,8 +22,8 @@ const Index = () => {
       setLoading(true);
       await new Promise((res) => setTimeout(res, 3000));
       setLoading(false);
+      localStorage.setItem('email', email);
       Navigate('/register/step-2');
-      // dispatch(registerAccount(user));
     }
   };
   return (
