@@ -38,9 +38,12 @@ const Index = () => {
     }
   };
 
-  if (success) {
-    Navigate('/');
-  }
+  React.useEffect(() => {
+    if (success) {
+      Navigate('/');
+    }
+  }, [success, Navigate]);
+  
   return (
     <AuthLayout
       title='Login'
