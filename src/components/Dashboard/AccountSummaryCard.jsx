@@ -10,7 +10,9 @@ const Index = () => {
   const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
   let { EURBalance, USDBalance, NGNBalance } = loggedInUser;
   let totalBalance =
-    parseFloat(EURBalance) + parseFloat(USDBalance) + parseFloat(NGNBalance);
+    parseFloat(EURBalance) * 1.14 +
+    parseFloat(USDBalance) +
+    parseFloat(NGNBalance) * 0.0024;
   const { showBalance } = useSelector(accountSelector);
   return (
     <Container>
@@ -19,7 +21,9 @@ const Index = () => {
           <div className='first__row'>
             <div className='total__balance'>
               <span>USD</span>&nbsp;
-              {showBalance ? totalBalance : 'XXXXXX'}
+              {showBalance
+                ? totalBalance.toFixed(2)
+                : 'XXXXXX'}
             </div>
             <div className='btn__group'>
               <div className='btn_tab'>
