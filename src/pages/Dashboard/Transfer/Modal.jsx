@@ -8,6 +8,7 @@ import {
   clearState,
 } from '../../../redux/reducers/transfers';
 import { clearState as clearAccountState } from '../../../redux/reducers/account';
+import { getLatestUserDetails } from '../../../redux/actions/transfers';
 
 export const TransferSuccessModal = () => {
   const dispatch = useDispatch();
@@ -20,8 +21,8 @@ export const TransferSuccessModal = () => {
       footer={false}
       onCancel={() => {
         dispatch(clearState());
+        dispatch(getLatestUserDetails());
         dispatch(clearAccountState());
-        window.location.reload();
       }}
     >
       <div className='container'>

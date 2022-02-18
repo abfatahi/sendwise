@@ -36,7 +36,18 @@ export const columns = [
     title: 'Amount',
     dataIndex: 'amount',
     key: 'amount',
-    render: (text) => <Space>#{text.toLocaleString()}</Space>,
+    render: (text, record) => (
+      <Space>
+        {record.targetCurrency === 'USD'
+          ? '$'
+          : record.targetCurrency === 'EUR'
+          ? '€'
+          : record.targetCurrency === 'NGN'
+          ? '₦'
+          : ''}
+        {text.toLocaleString()}
+      </Space>
+    ),
   },
   {
     title: 'Date',
