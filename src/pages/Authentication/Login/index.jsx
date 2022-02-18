@@ -18,8 +18,8 @@ const Index = () => {
   const { success, error, loading } = useSelector(loginSelector);
 
   const [user, setUser] = React.useState({
-    email: '',
-    password: '',
+    email: 'abfatahi.iaf@gmail.com',
+    password: 'test1234',
     submitted: false,
   });
 
