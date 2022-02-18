@@ -9,14 +9,20 @@ import {
   toggleShowBalance,
   accountSelector,
 } from '../../../redux/reducers/account';
-import { transferSelector } from '../../../redux/reducers/transfers';
+// import { transferSelector } from '../../../redux/reducers/transfers';
+import { getTransactions } from '../../../redux/actions/account';
 
 const Index = () => {
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(getTransactions());
+  }, [dispatch]);
+
   const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
   let { EURBalance, USDBalance, NGNBalance } = loggedInUser;
-  const { showBalance } = useSelector(accountSelector);
-  const { transfers } = useSelector(transferSelector);
+  const { showBalance, transactions } = useSelector(accountSelector);
+  // const { transfers } = useSelector(transferSelector);
   return (
     <DashboardLayout
       content={
@@ -52,7 +58,9 @@ const Index = () => {
           <h3>Recent Transactions</h3>
           <br />
           <Table
-            dataSource={transfers.length > 0 ? transfers.slice(-5) : transfers}
+            dataSource={
+              transactions.length > 0 ? transactions.slice(-5) : transactions
+            }
             columns={columns}
             pagination={false}
             scroll={{ x: 1250 }}

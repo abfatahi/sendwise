@@ -1,14 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { validateAccount } from '../actions/account';
+import { getTransactions } from '../actions/account';
 
 export const accountSlice = createSlice({
   name: 'account',
   initialState: {
-    validateBankLoading: false,
-    validateBankError: false,
-    validateBankSuccess: false,
-    accountName: '',
-    bankName: '',
+    loading: false,
+    error: false,
+    success: false,
+    transactions: [],
     showBalance: false,
     showTransferModal: false,
   },
@@ -27,22 +26,21 @@ export const accountSlice = createSlice({
     },
   },
   extraReducers: {
-    [validateAccount.pending]: (state) => {
-      state.validateBankLoading = true;
+    [getTransactions.pending]: (state) => {
+      state.loading = true;
       return state;
     },
-    [validateAccount.fulfilled]: (state, { payload }) => {
-      state.validateBankLoading = false;
-      state.validateBankError = false;
-      state.validateBankSuccess = true;
-      state.accountName = payload.account_name;
-      state.accountName = payload.account_name;
+    [getTransactions.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.error = false;
+      state.success = true;
+      state.transactions = payload.Transactions;
       return state;
     },
-    [validateAccount.rejected]: (state) => {
-      state.validateBankLoading = false;
-      state.validateBankError = true;
-      state.validateBankSuccess = false;
+    [getTransactions.rejected]: (state) => {
+      state.loading = false;
+      state.error = true;
+      state.success = false;
       return state;
     },
   },
