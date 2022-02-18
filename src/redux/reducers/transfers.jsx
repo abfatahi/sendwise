@@ -5,9 +5,9 @@ export const transferSlice = createSlice({
   name: 'transfer',
 
   initialState: {
-    transfers: [],
     loading: false,
     error: false,
+    errors: [],
     success: false,
     activeTab: 'saved',
   },
@@ -16,6 +16,7 @@ export const transferSlice = createSlice({
     clearState: (state) => {
       state.loading = false;
       state.error = false;
+      state.errors = [];
       state.success = false;
       return state;
     },
@@ -30,18 +31,18 @@ export const transferSlice = createSlice({
       state.loading = true;
       return state;
     },
-    [transferFunds.fulfilled]: (state, { payload }) => {
+    [transferFunds.fulfilled]: (state) => {
       state.loading = false;
       state.error = false;
+      state.errors = [];
       state.success = true;
-      state.transfers.push(payload);
       return state;
     },
     [transferFunds.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = true;
+      state.errors = payload.errors || payload;
       state.success = false;
-      state.transfers.push(payload);
       return state;
     },
   },

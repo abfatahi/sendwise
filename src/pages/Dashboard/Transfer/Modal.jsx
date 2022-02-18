@@ -9,14 +9,14 @@ import {
 } from '../../../redux/reducers/transfers';
 import { clearState as clearAccountState } from '../../../redux/reducers/account';
 
-export const TransferFailureModal = () => {
+export const TransferSuccessModal = () => {
   const dispatch = useDispatch();
-  const { error } = useSelector(transferSelector);
+  const { success } = useSelector(transferSelector);
 
   return (
     <ModalContainer
       centered={true}
-      visible={error}
+      visible={success}
       footer={false}
       onCancel={() => {
         dispatch(clearState());
@@ -26,7 +26,7 @@ export const TransferFailureModal = () => {
     >
       <div className='container'>
         <FaInfoCircle className='img' />
-        <h5>Your balance is not enough to fulfil this request</h5>
+        <h5>Transfer Successful!</h5>
       </div>
     </ModalContainer>
   );
