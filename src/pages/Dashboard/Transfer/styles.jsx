@@ -32,25 +32,29 @@ export const TransferContainer = styled.form`
     width: 100%;
   }
 
-  .active{
+  .active {
     background: #5a75ff;
-    color:#fff !important;
+    color: #fff !important;
   }
 
   .tab {
-    flex:1;
+    flex: 1;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    cursor:pointer;
+    cursor: pointer;
     color: #5a75ff;
+
+    @media screen and (max-width: 425px) {
+      font-size: 0.8rem;
+    }
   }
 
   .tab_group {
     display: flex;
-    border:1px solid #5a75ff;
+    border: 1px solid #5a75ff;
   }
 
   h3 {

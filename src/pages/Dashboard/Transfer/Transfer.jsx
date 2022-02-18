@@ -14,7 +14,7 @@ import { TransferFailureModal } from './Modal';
 
 const Index = () => {
   const dispatch = useDispatch();
-
+  const user = JSON.parse(sessionStorage.getItem('user'));
   const {
     // validateBankLoading,
     // validateBankError,
@@ -143,12 +143,8 @@ const Index = () => {
                       bank_name: e.target.options[e.target.selectedIndex].text,
                     }));
                   }}
-                  placeholder='John Doe'
-                  data={[
-                    { name: 'Nicola Tesla', value: 'Nicola Tesla' },
-                    { name: 'Ishaq Abdulfatahi', value: 'Ishaq Abdulfatahi' },
-                    { name: 'John Doe', value: 'John Doe' },
-                  ]}
+                  placeholder='[ - Select Beneficiary - ]'
+                  data={user.beneficiaries}
                 />
                 {/* {submitted && !bank_name && (
               <p className='error-msg'>Beneficiary bank is required</p>

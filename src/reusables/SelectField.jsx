@@ -32,23 +32,6 @@ const Container = styled.div`
     position: relative;
     height: 36px;
 
-    label {
-      position: absolute;
-      top: 10px;
-      left: 15px;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 10px;
-      line-height: 11px;
-      text-transform: uppercase;
-      color: #172836;
-
-      span {
-        color: #f14c18;
-        font-size: 12px;
-      }
-    }
-
     select {
       width: 100%;
       // background: #f4f4f4;
@@ -71,12 +54,8 @@ const Container = styled.div`
 
   .group::after {
     content: '▼';
-    font-size: 1rem;
+    font-size: 0.8rem;
     right: 15px;
     position: absolute;
-
-    @media screen and (max-width: 425px) {
-      top: 16px;
-    }
   }
 `;
