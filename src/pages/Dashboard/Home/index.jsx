@@ -9,7 +9,6 @@ import {
   toggleShowBalance,
   accountSelector,
 } from '../../../redux/reducers/account';
-// import { transferSelector } from '../../../redux/reducers/transfers';
 import { getTransactions } from '../../../redux/actions/account';
 
 const Index = () => {
@@ -22,7 +21,7 @@ const Index = () => {
   const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
   let { EURBalance, USDBalance, NGNBalance } = loggedInUser;
   const { showBalance, transactions } = useSelector(accountSelector);
-  // const { transfers } = useSelector(transferSelector);
+
   return (
     <DashboardLayout
       content={

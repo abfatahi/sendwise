@@ -1,4 +1,6 @@
 import { Space } from 'antd';
+const user = JSON.parse(sessionStorage.getItem('user'));
+let self = user.accountNumber;
 
 export const columns = [
   {
@@ -9,13 +11,13 @@ export const columns = [
     title: 'From',
     dataIndex: 'sender',
     key: 'sender',
-    render: (text) => <Space>{text}</Space>,
+    render: (text) => <Space>{text === self ? 'You' : text}</Space>,
   },
   {
     title: 'To',
     dataIndex: 'receiver',
     key: 'receiver',
-    render: (text) => <Space>{text}</Space>,
+    render: (text) => <Space>{text === self ? 'You' : text}</Space>,
   },
   {
     title: 'Transaction ID',
@@ -25,8 +27,8 @@ export const columns = [
   },
   {
     title: 'Currency',
-    dataIndex: 'currency',
-    key: 'currency',
+    dataIndex: 'targetCurrency',
+    key: 'targetCurrency',
     render: (text) => <Space>{text}</Space>,
   },
   {
@@ -40,9 +42,7 @@ export const columns = [
     dataIndex: 'createdAt',
     key: 'createdAt',
     render: (text) => (
-      <Space>
-        {text ? new Date(text).toLocaleDateString() : '------'}
-      </Space>
+      <Space>{text ? new Date(text).toLocaleDateString() : '------'}</Space>
     ),
   },
   {
@@ -71,4 +71,3 @@ export const columns = [
     ),
   },
 ];
-
