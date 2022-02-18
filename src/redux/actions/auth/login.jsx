@@ -27,7 +27,7 @@ export const loginAccount = createAsyncThunk(
     } catch (err) {
       return thunkAPI.rejectWithValue([
         {
-          message: 'Failed! To establish internet connection.',
+          message: 'Failed! To establish connection.',
         },
       ]);
     }

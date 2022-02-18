@@ -11,6 +11,7 @@ import {
 import { Link } from 'react-router-dom';
 import { toggleSidebar } from '../../redux/reducers/sidebar';
 import { useDispatch } from 'react-redux';
+import { clearState } from '../../redux/reducers/auth/login';
 
 const Sidebar = (props) => {
   const dispatch = useDispatch();
@@ -69,6 +70,7 @@ const Sidebar = (props) => {
         onClick={() => {
           sessionStorage.removeItem('token');
           dispatch(toggleSidebar());
+          dispatch(clearState());
         }}
         className='logout__btn'
         to={'/login'}

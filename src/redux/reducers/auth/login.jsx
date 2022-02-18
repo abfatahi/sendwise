@@ -33,7 +33,7 @@ export const loginSlice = createSlice({
     [loginAccount.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = true;
-      state.errors = payload.errors;
+      state.errors = payload.errors || payload;
       state.success = false;
       return state;
     },

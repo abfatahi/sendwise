@@ -3,12 +3,16 @@ import styled from 'styled-components';
 import { FaUser, FaBell, FaChevronCircleLeft, FaBars } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { Logo as logo } from '../../assets/images';
+import { clearState } from '../../redux/reducers/auth/login';
+import { useDispatch } from 'react-redux';
 
 const Navbar = (props) => {
+  const dispatch = useDispatch();
   const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
   const Navigate = useNavigate();
   const signout = () => {
     sessionStorage.removeItem('token');
+    dispatch(clearState());
     Navigate('/login');
   };
 
@@ -126,8 +130,8 @@ const UserProfile = styled.div`
     text-align: center;
     letter-spacing: 0.001em;
     color: #666666;
-    text-transform:capitalize;
-    padding:0 !important;
+    text-transform: capitalize;
+    padding: 0 !important;
     margin-bottom: 0.1em !important;
   }
 
