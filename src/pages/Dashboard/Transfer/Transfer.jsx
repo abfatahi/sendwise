@@ -87,7 +87,9 @@ const Index = () => {
                   onValueChange={(e) => {
                     setNewTransfer((prevState) => ({
                       ...prevState,
-                      beneficiary: e.target.value,
+                      beneficiary:
+                        e.target.options[e.target.selectedIndex].text,
+                      receiver: e.target.value,
                     }));
                   }}
                   placeholder='[ - Select Beneficiary - ]'
@@ -137,7 +139,18 @@ const Index = () => {
 
           <div className='input'>
             Amount
-            <Inputfield outline placeholder='0.00' />
+            <Inputfield
+              fieldname='amount'
+              inputType='number'
+              onTextChange={(e) =>
+                setNewTransfer((prevState) => ({
+                  ...prevState,
+                  amount: parseFloat(e.target.value),
+                }))
+              }
+              outline
+              placeholder='0.00'
+            />
             {submitted && !amount && (
               <p className='error-msg'>Amount is required</p>
             )}
@@ -151,7 +164,7 @@ const Index = () => {
                   targetCurrency: e.target.value,
                 }));
               }}
-              placeholder='USD'
+              placeholder='[ - Select Target Currency - ]'
               data={[
                 { name: 'USD', value: 'USD' },
                 { name: 'EUR', value: 'EUR' },
