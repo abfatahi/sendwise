@@ -3,10 +3,10 @@ import { FaCheckCircle, FaExchangeAlt, FaHistory } from 'react-icons/fa';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { accountSelector } from '../../redux/reducers/account';
-// import { Selectfield } from '../../reusables';
-// import { Radio } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
+  const Navigate = useNavigate();
   const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
   let { EURBalance, USDBalance, NGNBalance } = loggedInUser;
   let totalBalance =
@@ -21,17 +21,19 @@ const Index = () => {
           <div className='first__row'>
             <div className='total__balance'>
               <span>USD</span>&nbsp;
-              {showBalance
-                ? totalBalance.toFixed(2)
-                : 'XXXXXX'}
+              {showBalance ? totalBalance.toFixed(2) : 'XXXXXX'}
             </div>
             <div className='btn__group'>
               <div className='btn_tab'>
-                <FaExchangeAlt />
+                <FaExchangeAlt
+                  onClick={() => Navigate('/transfer/funds-transfer')}
+                />
                 Transfer
               </div>
               <div className='btn_tab'>
-                <FaHistory />
+                <FaHistory
+                  onClick={() => Navigate('/account/transaction-history')}
+                />
                 Transactions
               </div>
             </div>
