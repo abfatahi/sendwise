@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { baseURL, paystackTestSecretKey } from '../../utils/api';
+import { baseURL} from '../../utils/api';
 
 export const transferFunds = createAsyncThunk(
   'transfer/funds',
@@ -24,7 +24,7 @@ export const transferFunds = createAsyncThunk(
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + paystackTestSecretKey,
+          // Authorization: 'Bearer ' 
         },
         body: JSON.stringify({
           name,
@@ -41,7 +41,7 @@ export const transferFunds = createAsyncThunk(
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + paystackTestSecretKey,
+            // Authorization: 'Bearer ' ,
           },
           body: JSON.stringify({
             recipients,

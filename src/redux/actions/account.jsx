@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { baseURL, paystackTestSecretKey } from '../../utils/api';
+import { baseURL } from '../../utils/api';
 
 export const validateAccount = createAsyncThunk(
   'validate/account',
@@ -10,7 +10,7 @@ export const validateAccount = createAsyncThunk(
         {
           method: 'GET',
           headers: {
-            Authorization: 'Bearer ' + paystackTestSecretKey,
+            // Authorization: 'Bearer ' + paystackTestSecretKey,
           },
         }
       );
